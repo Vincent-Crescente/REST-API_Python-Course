@@ -6,7 +6,7 @@ from resources.user import UserRegister
 from security import authenticate, identity
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
-from db import db
+
 
 app = Flask(__name__)
 # Turns off the flask sql alchemy tracker. B/c sqlalchemy itself has its own.
@@ -18,12 +18,6 @@ api = Api(app)
 
 # adding columns to our table magically created by SQL Alchemy
 # special decorator from flask
-
-# now we can create data.db without running create_tables.py
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 
 jwt = JWT(app, authenticate, identity)  # /auth
 
@@ -37,5 +31,4 @@ api.add_resource(UserRegister, '/register')
 # THE FILE YOU FIRST RUN WILL HAVE THE NAME MAIN.
 # IF not then it has been imported from somewhere else.
 if __name__ == '__main__':
-    db.init_app(app)
     app.run(port=5000, debug=True)
