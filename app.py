@@ -16,9 +16,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.secret_key = 'jose'
 api = Api(app)
 
-# adding columns to our table magically created by SQL Alchemy
-# special decorator from flask
-
 jwt = JWT(app, authenticate, identity)  # /auth
 
 api.add_resource(Store, '/store/<string:name>')
