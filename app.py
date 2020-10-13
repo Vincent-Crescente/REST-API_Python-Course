@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -12,7 +14,7 @@ app = Flask(__name__)
 # Turns off the flask sql alchemy tracker. B/c sqlalchemy itself has its own.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # SQL Alchemy will read where our db is. It can be any db.. msql, postgresSql, oracle
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.secret_key = 'jose'
 api = Api(app)
 
