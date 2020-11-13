@@ -23,7 +23,12 @@ class ItemModel(db.Model):
         self.store_id = store_id
 
     def json(self):
-        return {'name': self.name, 'price': self.price}
+        return {'id': self.id,
+
+                'name': self.name,
+                'price': self.price,
+                'store_id': self.store_id
+                }
 
     # if you look at this func in prev sections you'll see how alchemy is
     # making things shorter
@@ -32,6 +37,10 @@ class ItemModel(db.Model):
         # select * from __tablename__ where name=name LIMIT 1. 2nd name is the parameter
         # returns a item model object.
         return cls.query.filter_by(name=name).first()
+
+    @classmethod
+    def find_all(cls):
+        return cls.query.all()
 
     # updating or inserting is handled by this, lec 99, (upserting)
     def save_to_db(self):

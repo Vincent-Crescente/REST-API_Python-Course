@@ -15,6 +15,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # SQL Alchemy will read where our db is. It can be any db.. msql, postgresSql, oracle
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
+# This allows flask extensions like, Flask-JWT to return a specific error.
+app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'jose'
 api = Api(app)
 
