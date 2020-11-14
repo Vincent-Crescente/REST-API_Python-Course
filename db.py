@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 # ex. An itemModel object has a column called 'name' and a column called 'price'
 # Alchemy helps put the above object into the database.
 
-# ******* Sql Alchemy is made to change an object into a insert-able row
+# ******* Sql Alchemy is made to change an object into a insertable row
 # in our db. That's it.
 
 db = SQLAlchemy()
